@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Eng Ebrahem Alwasti - AI Engineer in Healthcare & Pharma">
+  <title>Eng Ebrahem Alwasti | AI & Pharmaceutical Science</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Poppins:wght@300;400;500;600&family=Rajdhani:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* -------------------------------------------------------------
+           1. CORE VARIABLES & RESET
+           ------------------------------------------------------------- */
+    :root {
+      /* Palette */
+      --bg-black: #050606;
+      --bg-nav: rgba(5, 6, 6, 0.85);
+      --card-surface: #0a0b0c;
+      --royal-blue: #1A4FFF;
+      /* Adjusted for higher contrast/glow */
+      --royal-blue-dim: #0B3D91;
+      --soft-blue-glow: rgba(26, 79, 255, 0.15);
+      --text-white: #F5F7FA;
+      --muted-gray: #CBD5E1;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+
+      /* Typography */
+      --font-display: 'Orbitron', sans-serif;
+      --font-tech: 'Rajdhani', sans-serif;
+      --font-body: 'Poppins', sans-serif;
+
+      /* Spacing */
+      --space-xs: 8px;
+      --space-sm: 16px;
+      --space-md: 24px;
+      --space-lg: 48px;
+      --space-xl: 80px;
+
+      --max-width: 1200px;
+      --nav-height: 70px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-black);
+      color: var(--text-white);
+      font-family: var(--font-body);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: 0.3s;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* -------------------------------------------------------------
+           2. TYPOGRAPHY & UTILITIES
+           ------------------------------------------------------------- */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--font-display);
+      color: var(--text-white);
+      letter-spacing: 0.03em;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: var(--space-lg);
+      position: relative;
+      display: inline-block;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--royal-blue), transparent);
+    }
+
+    .text-accent {
+      color: var(--royal-blue);
+    }
+
+    .text-tech {
+      font-family: var(--font-tech);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .section-padding {
+      padding: var(--space-xl) 0;
+    }
+
+    /* -------------------------------------------------------------
+           3. BACKGROUND VISUALS (Fixed)
+           ------------------------------------------------------------- */
+     .bg-fixed-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+      background: radial-gradient(circle at top right, rgba(11, 61, 145, 0.08), transparent 60%);
+    }
+
+    .bg-element {
+      position: absolute;
+      fill: none;
+      stroke: var(--royal-blue);
+      opacity: 0.04;
+      /* Extremely subtle opacity as requested */
+    }
+
+    /* Neural Mesh */
+    .svg-neural {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.03;
+    }
+
+    /* Pharmaceutical Elements */
+    .svg-pill-1 {
+      top: 15%;
+      right: 10%;
+      width: 60px;
+      height: 60px;
+      transform: rotate(15deg);
+    }
+
+    .svg-pill-2 {
+      bottom: 20%;
+      left: 5%;
+      width: 80px;
+      height: 80px;
+      transform: rotate(-10deg);
+    }
+
+    .svg-benzene {
+      top: 40%;
+      left: 15%;
+      width: 100px;
+      height: 100px;
+      opacity: 0.02;
+    }
+
+    .svg-benzene-2 {
+      bottom: 10%;
+      right: 20%;
+      width: 120px;
+      height: 120px;
+      opacity: 0.02;
+    }
+
+    /* Clinical Data */
+    .svg-graph {
+      top: 60%;
+      right: -50px;
+      width: 400px;
+      height: 200px;
+      opacity: 0.03;
+    }
+
+    /* DNA */
+    .svg-dna-strand {
+      top: 30%;
+      left: -10%;
+      width: 120%;
+      height: 200px;
+      opacity: 0.02;
+      transform: rotate(-5deg);
+    }
+
+    /* -------------------------------------------------------------
+           4. NAVIGATION
+           ------------------------------------------------------------- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--nav-height);
+      background: var(--bg-nav);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--text-white);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    .nav-links a {
+      font-family: var(--font-tech);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      color: var(--muted-gray);
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--royal-blue);
+    }
+
+    /* -------------------------------------------------------------
+           5. HERO SECTION
+           ------------------------------------------------------------- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-top: var(--nav-height);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .hero-identity h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: var(--space-sm);
+    }
+
+    .hero-identity h3 {
+      font-family: var(--font-tech);
+      font-size: 1.5rem;
+      color: var(--royal-blue);
+      margin-bottom: var(--space-xs);
+    }
+
+    .hero-tagline {
+      font-size: 1.1rem;
+      color: var(--muted-gray);
+      margin-bottom: var(--space-lg);
+      max-width: 600px;
+      border-left: 2px solid var(--royal-blue);
+      padding-left: var(--space-sm);
+    }
+
+    .cta-group {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 28px;
+      font-family: var(--font-tech);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 1px solid var(--royal-blue);
+      position: relative;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: var(--soft-blue-glow);
+      color: var(--text-white);
+    }
+
+    .btn-primary:hover {
+      background: var(--royal-blue);
+      box-shadow: 0 0 20px var(--soft-blue-glow);
+    }
+
+    .btn-secondary {
+      border-color: var(--muted-gray);
+      color: var(--muted-gray);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-white);
+      color: var(--text-white);
+    }
+
+    /* -------------------------------------------------------------
+           6. ABOUT & EXPERTISE
+           ------------------------------------------------------------- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .about-text p {
+      margin-bottom: var(--space-md);
+      color: var(--muted-gray);
+    }
+
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .tech-card {
+      background: var(--card-surface);
+      border: 1px solid var(--border-subtle);
+      padding: var(--space-md);
+      transition: 0.3s;
+      position: relative;
+    }
+
+    .tech-card:hover {
+      border-color: var(--royal-blue);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.7);
+    }
+
+    .tech-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--royal-blue);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: 0.4s;
+    }
+
+    .tech-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .tech-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: var(--space-xs);
+    }
+
+    .tech-card p {
+      font-size: 0.9rem;
+      color: var(--muted-gray);
+      line-height: 1.5;
+    }
+
+    /* -------------------------------------------------------------
+           7. EXPERIENCE & EDUCATION
+           ------------------------------------------------------------- */
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+      border-left: 2px solid rgba(26, 79, 255, 0.3);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: var(--space-lg);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -36px;
+      top: 5px;
+      width: 10px;
+      height: 10px;
+      background: var(--bg-black);
+      border: 2px solid var(--royal-blue);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--royal-blue);
+    }
+
+    .timeline-date {
+      font-family: var(--font-tech);
+      color: var(--royal-blue);
+      font-weight: 700;
+      margin-bottom: var(--space-xs);
+    }
+
+    .timeline-role {
+      font-size: 1.2rem;
+      color: var(--text-white);
+      margin-bottom: 5px;
+    }
+
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-md);
+    }
+
+    /* -------------------------------------------------------------
+           8. PROJECTS
+           ------------------------------------------------------------- */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+
+    .project-card {
+      background: linear-gradient(180deg, var(--card-surface) 0%, rgba(10, 11, 12, 0.5) 100%);
+      border: 1px solid var(--border-subtle);
+      padding: var(--space-lg);
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      gap: var(--space-md);
+      align-items: start;
+    }
+
+    .project-meta {
+      font-family: var(--font-tech);
+      color: var(--royal-blue);
+      border-right: 1px solid var(--border-subtle);
+      padding-right: var(--space-md);
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      margin-bottom: var(--space-sm);
+      color: var(--text-white);
+    }
+
+    .project-tags span {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      background: rgba(255, 255, 255, 0.05);
+      margin-right: 6px;
+      margin-top: 8px;
+      border-radius: 2px;
+      color: var(--muted-gray);
+      font-family: var(--font-tech);
+    }
+
+    /* -------------------------------------------------------------
+           9. SKILLS & LANGUAGES
+           ------------------------------------------------------------- */
+    .skills-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+    }
+
+    .skill-category h3 {
+      margin-bottom: var(--space-md);
+      color: var(--royal-blue);
+    }
+
+    .skill-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      color: var(--muted-gray);
+    }
+
+    .skill-list li::before {
+      content: '>';
+      position: absolute;
+      left: 0;
+      color: var(--royal-blue);
+      font-family: monospace;
+    }
+
+    .lang-bar {
+      margin-bottom: var(--space-md);
+    }
+
+    .lang-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      font-family: var(--font-tech);
+    }
+
+    .progress-bg {
+      width: 100%;
+      height: 4px;
+      background: #222;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--royal-blue);
+      box-shadow: 0 0 10px var(--royal-blue);
+    }
+
+    /* -------------------------------------------------------------
+           10. CONTACT FOOTER
+           ------------------------------------------------------------- */
+    .footer {
+      background: #000;
+      border-top: 1px solid var(--border-subtle);
+      padding: var(--space-xl) 0 var(--space-lg);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+    }
+
+    .contact-list a {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+      color: var(--muted-gray);
+    }
+
+    .contact-list a:hover {
+      color: var(--text-white);
+      transform: translateX(5px);
+    }
+
+    .contact-list svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--text-white);
+      stroke-width: 1.5;
+      fill: none;
+    }
+
+    .footer-tagline {
+      font-family: var(--font-tech);
+      color: var(--royal-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: var(--space-md);
+      font-size: 0.9rem;
+    }
+
+    /* -------------------------------------------------------------
+           11. RESPONSIVENESS
+           ------------------------------------------------------------- */
+    @media (max-width: 768px) {
+
+      .hero-grid,
+      .about-grid,
+      .skills-wrapper,
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+
+      .project-card {
+        grid-template-columns: 1fr;
+        border-left: 4px solid var(--royal-blue);
+      }
+
+      .project-meta {
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      /* Simplified mobile nav */
+      .hero-identity h1 {
+        font-size: 2.2rem;
+      }
+
+      .container {
+        padding: 0 20px;
+      }
+    }
+
+    @media print {
+
+      .bg-fixed-layer,
+      .btn {
+        display: none;
+      }
+
+      body {
+        color: #000;
+        background: #fff;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #000;
+      }
+
+      .tech-card,
+      .project-card {
+        border: 1px solid #ddd;
+        background: #fff;
+        color: #000;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 
+        GLOBAL BACKGROUND:
+        - Neural Mesh
+        - DNA Helix
+        - Pharmaceutical Elements (Pills/Benzene)
+        - Clinical Data Graph
+        All set to 2-4% opacity for subtle texture.
+      -->
+  <div class="bg-fixed-layer">
+    <!-- Neural Mesh (Abstract Lines) -->
+    <svg class="bg-element svg-neural" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <path d="M0,50 Q25,30 50,50 T100,50 M0,20 Q40,40 80,10 M20,100 Q40,60 60,90" stroke-width="0.2" />
+      <circle cx="20" cy="20" r="0.5" fill="var(--royal-blue)" />
+      <circle cx="50" cy="50" r="0.5" fill="var(--royal-blue)" />
+      <circle cx="80" cy="80" r="0.5" fill="var(--royal-blue)" />
+    </svg>
+  
+    <!-- DNA Strand -->
+    <svg class="bg-element svg-dna-strand" viewBox="0 0 100 20" preserveAspectRatio="none">
+      <path d="M0,10 Q5,0 10,10 T20,10 T30,10 T40,10 T50,10 T60,10 T70,10 T80,10 T90,10 T100,10" stroke-width="0.3" />
+      <path d="M0,10 Q5,20 10,10 T20,10 T30,10 T40,10 T50,10 T60,10 T70,10 T80,10 T90,10 T100,10" stroke-width="0.3" />
+    </svg>
+  
+    <!-- Pharmaceutical: Pill & Capsule -->
+    <svg class="bg-element svg-pill-1" viewBox="0 0 40 20">
+      <rect x="1" y="1" width="38" height="18" rx="9" stroke-width="1" />
+      <line x1="20" y1="1" x2="20" y2="19" stroke-width="1" />
+    </svg>
+    <svg class="bg-element svg-pill-2" viewBox="0 0 40 20">
+      <rect x="1" y="1" width="38" height="18" rx="9" stroke-width="1" />
+    </svg>
+  
+    <!-- Chemical: Benzene Rings -->
+    <svg class="bg-element svg-benzene" viewBox="0 0 50 50">
+      <polygon points="25,5 45,15 45,35 25,45 5,35 5,15" stroke-width="1" />
+      <circle cx="25" cy="25" r="10" stroke-width="1" />
+    </svg>
+    <svg class="bg-element svg-benzene-2" viewBox="0 0 50 50">
+      <polygon points="25,5 45,15 45,35 25,45 5,35 5,15" stroke-width="1" />
+    </svg>
+  
+    <!-- Clinical Data Graph -->
+    <svg class="bg-element svg-graph" viewBox="0 0 100 50" preserveAspectRatio="none">
+      <polyline points="0,50 20,40 40,45 60,20 80,25 100,5" stroke-width="0.5" />
+      <line x1="0" y1="50" x2="100" y2="50" stroke-width="0.5" />
+      <line x1="0" y1="0" x2="0" y2="50" stroke-width="0.5" />
+    </svg>
+  </div>
+ 
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container nav-content">
+      <div class="logo">Ebrahen Alwasti</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-identity">
+        <h3>AI Engineer in Healthcare</h3>
+        <h2>Ebrahem Alwasti</h2>
+        <p class="hero-tagline">Bridging Artificial Intelligence with Pharmaceutical Science & Clinical Safety.</p>
+        <div class="cta-group">
+          <a href="https://linkedin.com/in/ebrahem-alwasti" class="btn btn-secondary">LinkedIn Profile</a>
+        </div>
+      </div>
+      <!-- Minimal visualization handled by SVG background positioning -->
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section-padding" id="about">
+    <div class="container">
+      <h2>About Me</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="text-accent" style="font-weight: 600;">Bridging the gap between Artificial Intelligence and
+            Pharmaceutical Science.</p>
+          <p>
+            I am a dedicated researcher and engineer focused on applying advanced Machine Learning architectures to
+            solve critical challenges in healthcare. My work centers on Drug-Drug Interaction (DDI) prediction, clinical
+            decision support systems, and automating R&D processes within the pharmaceutical industry.
+          </p>
+          <p>
+            By combining rigorous data analysis with cutting-edge deep learning, I aim to enhance patient safety and
+            accelerate drug discovery timelines.
+          </p>
+        </div>
+        <!-- Abstract visual placeholder -->
+        <div
+          style="border: 1px solid var(--border-subtle); height: 200px; display: flex; align-items: center; justify-content: center; background: rgba(11, 61, 145, 0.05); font-size: 30px;">
+          <span class="text-tech"><strong> Bio-Computational Modeling</strong></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise Section -->
+  <section class="section-padding" id="expertise">
+    <div class="container">
+      <h2>Specializations</h2>
+      <div class="expertise-grid">
+        <div class="tech-card">
+          <h4>Medical AI</h4>
+          <p>Designing algorithms compliant with healthcare standards (HL7/FHIR) for clinical integration.</p>
+        </div>
+        <div class="tech-card">
+          <h4>Pharma Analytics</h4>
+          <p>Data-driven insights for drug discovery, efficacy prediction, and safety profiling.</p>
+        </div>
+        <div class="tech-card">
+          <h4>DDI Research</h4>
+          <p>Advanced modeling of Drug-Drug Interactions using graph neural networks.</p>
+        </div>
+        <div class="tech-card">
+          <h4>Deep Learning</h4>
+          <p>Architecting CNNs and Transformers for complex biomedical data structures.</p>
+        </div>
+        <div class="tech-card">
+          <h4>Prompt Engineering</h4>
+          <p>Optimizing LLMs for accurate medical literature summarization and query answering.</p>
+        </div>
+        <div class="tech-card">
+          <h4>Predictive Modeling</h4>
+          <p>Forecasting patient outcomes and disease progression trajectories.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="section-padding" id="experience">
+    <div class="container">
+      <h2>Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">CURRENT</div>
+          <h3 class="timeline-role">AI Researcher — Pharmaceutical Artificial Intelligence</h3>
+          <p class="text-tech" style="font-size: 0.9rem; margin-bottom: 10px;">Independent Research / Academic
+            Initiative</p>
+          <p style="color: var(--muted-gray); max-width: 700px;">
+            Leading research initiatives in DDI Modeling and Clinical Decision Support. Focusing on R&D Automation to
+            streamline pharmaceutical workflows through intelligent data processing.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section class="section-padding" id="education">
+    <div class="container">
+      <h2>Education</h2>
+      <div class="edu-grid">
+        <div class="tech-card">
+          <h4>Syrian Virtual University</h4>
+          <p class="text-accent">BE Artificial Intelligence</p>
+          <p style="font-size: 0.85rem; margin-top: 5px;">Focus: Neural Networks, Machine Learning, Computer Vision</p>
+        </div>
+        <div class="tech-card">
+          <h4>University of the People</h4>
+          <p class="text-accent">BBA Business Administration</p>
+          <p style="font-size: 0.85rem; margin-top: 5px;">Focus: Management, Strategic Planning</p>
+        </div>
+        <div class="tech-card">
+          <h4>Damascus University</h4>
+          <p class="text-accent">Diploma in Software Engineering</p>
+          <p style="font-size: 0.85rem; margin-top: 5px;">Focus: System Architecture, Software Development Lifecycle</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section-padding" id="projects">
+    <div class="container">
+      <h2>Selected Projects</h2>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-meta">
+            <div>2024</div>
+            <div style="margin-top: 10px; font-size: 0.8rem;">RESEARCH</div>
+          </div>
+          <div>
+            <h3 class="project-title">PharmaMind.X.MediIntel</h3>
+            <p style="color: var(--muted-gray);">
+              An AI-driven platform for analyzing drug interactions and pharmaceutical intelligence. Utilizes
+              large-scale biomedical databases to predict potential adverse effects.
+            </p>
+            <div class="project-tags">
+              <span>NLP</span><span>Graph Networks</span><span>Drug Safety</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-meta">
+            <div>2025</div>
+            <div style="margin-top: 10px; font-size: 0.8rem;">PREDICTIVE ML</div>
+          </div>
+          <div>
+            <h3 class="project-title">Type 2 Diabetes Prediction</h3>
+            <p style="color: var(--muted-gray);">
+              Developed a robust predictive model using patient health records. Implemented feature selection techniques
+              to identify key risk factors and achieve high classification accuracy.
+            </p>
+            <div class="project-tags">
+              <span>Scikit-Learn</span><span>Healthcare Data</span><span>Classification</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-meta">
+            <div>2025</div>
+            <div style="margin-top: 10px; font-size: 0.8rem;">COMPUTER VISION</div>
+          </div>
+          <div>
+            <h3 class="project-title">Skin Cancer Image Classification</h3>
+            <p style="color: var(--muted-gray);">
+              Built a Convolutional Neural Network (CNN) to classify dermoscopy images. The model aids in the early
+              detection of melanoma by analyzing pigmentation patterns.
+            </p>
+            <div class="project-tags">
+              <span>Deep Learning</span><span>CNN</span><span>Medical Imaging</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills & Languages Section -->
+  <section class="section-padding" id="skills">
+    <div class="container">
+      <div class="skills-wrapper">
+        <!-- Skills -->
+        <div class="skill-category">
+          <h3>Technical Skills</h3>
+          <ul class="skill-list">
+            <li><strong>Python & Data Science Stack</strong> (Pandas, NumPy, Scikit-Learn)</li>
+            <li><strong>Deep Learning Frameworks</strong> (TensorFlow, PyTorch)</li>
+            <li><strong>Medical Imaging Processing</strong></li>
+            <li><strong>Natural Language Processing (NLP)</strong></li>
+            <li><strong>Database Management</strong> (SQL, NoSQL for Healthcare Records)</li>
+          </ul>
+        </div>
+
+        <!-- Languages -->
+        <div class="skill-category">
+          <h3>Languages</h3>
+          <div class="lang-bar">
+            <div class="lang-info"><span>Arabic</span><span>Native</span></div>
+            <div class="progress-bg">
+              <div class="progress-fill" style="width: 100%;"></div>
+            </div>
+          </div>
+          <div class="lang-bar">
+            <div class="lang-info"><span>English</span><span>Professional Proficiency</span></div>
+            <div class="progress-bg">
+              <div class="progress-fill" style="width: 65%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Footer -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 style="margin-bottom: 20px;">Contact Information</h3>
+          <div class="contact-list">
+            <a href="tel:+963988944487">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.12 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                </path>
+              </svg>
+              Professional Contact Line
+            </a>
+            <a href="https://wa.me/963988944487">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                </path>
+              </svg>
+              WhatsApp for professional inquiries
+            </a>
+            <a href="mailto:ebrahemalwasti404@gmail.com">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              ebrahemalwasti404@gmail.com
+            </a>
+            <a href="https://linkedin.com/in/ebrahem-alwasti">
+              <svg viewBox="0 0 24 24">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+              ebrahem-alwasti
+            </a>
+            <a href="https://t.me/Ebrahem_Alwasti">
+              <svg viewBox="0 0 24 24">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+              @Ebrahem_Alwasti
+            </a>
+          </div>
+        </div>
+        <div style="display: flex; align-items: flex-end; justify-content: flex-end;">
+          <p class="footer-tagline">Advancing Healthcare Through Intelligent Pharmaceutical Technologies.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
